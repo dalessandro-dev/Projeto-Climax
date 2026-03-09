@@ -111,7 +111,7 @@ export const useWeatherApi = () => {
           },
         );
 
-        setDailyForecastData(formattedForecast);
+        setDailyForecastData({ days: formattedForecast });
 
         const localTimeEpoch = data.location.localtime_epoch;
         const formatedHours = data.forecast.forecastday[0].hour
@@ -124,7 +124,7 @@ export const useWeatherApi = () => {
             code: hour.condition.code,
           }));
 
-        setHourlyForecastData(formatedHours);
+        setHourlyForecastData({hours: formatedHours});
 
         setIsLoading(false);
 

@@ -1,5 +1,5 @@
 import "./App.css"
-import { Index } from "./pages";
+import { Index } from "./pages/Index";
 import { NotFound } from "./pages/NotFound";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

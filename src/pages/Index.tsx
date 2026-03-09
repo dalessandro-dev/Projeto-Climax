@@ -80,7 +80,7 @@ export const Index = () => {
         onSelectCity={setCity}
       />
 
-      {!isLoading && weatherData && dailyForecastData ? (
+      {!isLoading && weatherData && dailyForecastData && hourlyForecastData ? (
         <>
           <WeatherCard
             city={city}
@@ -97,9 +97,9 @@ export const Index = () => {
             code={weatherData.code}
           />
 
-          <HourlyForecast hours={hourlyForecastData} />
+          <HourlyForecast hours={hourlyForecastData.hours} />
 
-          <DailyForecast days={dailyForecastData} />
+          <DailyForecast days={dailyForecastData.days} />
         </>
       ) : (
         <>
