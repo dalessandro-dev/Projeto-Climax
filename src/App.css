@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+@plugin "tailwind-scrollbar-hide";
+
+@theme {
+  /* Cores Principais */
+  --color-background: hsl(222 47% 6%);
+  --color-foreground: hsl(210 40% 96%);
+
+  --color-card: hsl(222 40% 10%);
+  --color-card-foreground: hsl(210 40% 96%);
+
+  --color-primary: hsl(32 95% 55%);
+  --color-primary-foreground: hsl(222 47% 6%);
+
+  --color-secondary: hsl(215 30% 18%);
+  --color-secondary-foreground: hsl(210 40% 90%);
+
+  --color-accent: hsl(200 80% 55%);
+  --color-accent-foreground: hsl(222 47% 6%);
+
+  --color-border: hsl(215 25% 18%);
+  --color-input: hsl(215 25% 20%);
+  --color-ring: hsl(32 95% 55%);
+
+  --color-muted: hsl(215 25% 15%);
+  --color-muted-foreground: hsl(215 20% 55%);
+
+  /* Cores de Clima (Weather) */
+  --color-weather-sun: hsl(40 95% 60%);
+  --color-weather-cloud: hsl(215 30% 65%);
+  --color-weather-rain: hsl(210 80% 55%);
+  --color-weather-snow: hsl(200 30% 90%);
+  --color-weather-storm: hsl(260 60% 50%);
+
+  /* Raios/Bordas */
+  --radius: 1rem;
+
+  /* Gradientes e Efeitos Especiais */
+  /* Note: usamos --background-image para gradientes no v4 */
+  --gradient-sky: linear-gradient(
+    135deg,
+    hsl(222 47% 6%),
+    hsl(215 50% 12%),
+    hsl(200 40% 15%)
+  );
+
+  --gradient-sun: linear-gradient(
+    135deg,
+    hsl(32 95% 55%),
+    hsl(20 90% 50%)
+  );
+
+  /* Variável para o efeito Glass */
+  --color-glass: hsl(222 40% 12% / 0.6);
+}
+
+@layer utilities {
+  .gradient-sky {
+    background: var(--gradient-sky);
+  }
+
+  .glass-sm {
+    @apply bg-card/40 backdrop-blur-md border border-border/20 rounded-xl;
+  }
+
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border/30 rounded-2xl;
+  }
+
+  .text-gradient-sun {
+    background: var(--gradient-sun);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+}
