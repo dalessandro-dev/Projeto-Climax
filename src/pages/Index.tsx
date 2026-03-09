@@ -1,7 +1,7 @@
 import { SearchBar } from "./../components/SearchBar";
 import { WeatherCard } from "./../components/WeatherCard";
 import { WeatherIcon } from "./../components/WeatherIcon";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useWeatherApi } from "./../hooks/useWeatherApi";
 import { WeatherCardSkeleton } from "./../components/WeatherCardSkeleton";
 import { motion } from "framer-motion";
@@ -40,7 +40,8 @@ export const Index = () => {
     });
   };
 
-  const [city, setCity] = useState("Sao Paulo");
+  const [city, setCity] = useState<string>("Sao Paulo");
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const initLocation = async () => {
@@ -48,16 +49,25 @@ export const Index = () => {
         const coords = (await getBrowserLocation()) as string;
         const data = await fetchWeather(coords);
 
+        isFirstRender.current = true;
+
         setCity(data!.city);
       } catch (err) {
-        fetchWeather(city);
+        console.log(err);
       }
     };
     initLocation();
   }, []);
 
   useEffect(() => {
-    const loadWeather = async () => await fetchWeather(city);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    
+    const loadWeather = async () => {
+      if (city) await fetchWeather(city);
+    };
 
     loadWeather();
   }, [city]);

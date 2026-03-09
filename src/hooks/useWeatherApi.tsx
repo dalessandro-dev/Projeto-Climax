@@ -130,6 +130,7 @@ export const useWeatherApi = () => {
 
         return formattedDataWeather;
       } catch (err) {
+        console.log("FEzes")
         console.error("Erro ao buscar clima", err);
 
         if (retries > 0) {

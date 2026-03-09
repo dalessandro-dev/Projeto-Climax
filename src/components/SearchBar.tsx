@@ -17,13 +17,16 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const DELAY = 300;
 
   useEffect(() => {
     const loadCities = async () => {
       await fetchCities(query);
     };
 
-    loadCities();
+    const delayDebounceFn = setTimeout(() => loadCities(), DELAY);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [query, fetchCities]);
 
   return (
