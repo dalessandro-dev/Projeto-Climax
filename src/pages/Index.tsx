@@ -53,6 +53,7 @@ export const Index = () => {
 
         setCity(data!.city);
       } catch (err) {
+        fetchWeather("Sao Paulo");
         console.log(err);
       }
     };
@@ -64,7 +65,7 @@ export const Index = () => {
       isFirstRender.current = false;
       return;
     }
-    
+
     const loadWeather = async () => {
       if (city) await fetchWeather(city);
     };
