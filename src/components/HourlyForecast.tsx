@@ -25,19 +25,23 @@ export const HourlyForecast = ({ hours }: HourlyForecastProps) => {
     const div = divWithForecastRef.current;
     const rail = railRef.current;
 
-    if (div) {
-      const hasScroll = div.scrollWidth > div.clientWidth;
-      setShowScroll(hasScroll);
+    const resize = () => {
+      if (div) {
+        const hasScroll = div.scrollWidth > div.clientWidth;
+        setShowScroll(hasScroll);
 
-      if (scrollerRef.current && rail) {
-        const ratio = div.clientWidth / div.scrollWidth;
-        const width = Math.max(20, div.clientWidth * ratio);
+        if (scrollerRef.current && rail) {
+          const ratio = div.clientWidth / div.scrollWidth;
+          const width = Math.max(20, div.clientWidth * ratio);
 
-        scrollerRef.current.style.width = `${width}px`;
-        setMaxDrag(rail.clientWidth - width);
+          scrollerRef.current.style.width = `${width}px`;
+          setMaxDrag(rail.clientWidth - width);
+        }
       }
-    }
-    console.log(showScroll);
+    };
+
+    window.addEventListener("resize", resize);
+    resize();
   }, [showScroll, hours]);
 
   const handleScroll = () => {

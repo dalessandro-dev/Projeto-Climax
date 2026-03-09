@@ -23,7 +23,7 @@ export const StatItem = ({ type, value }: StatItemProps) => {
   const { Icon, label, unit } = iconMap[type];
 
   return (
-    <div className="p-3 flex flex-col items-center w-32 glass-sm gap-1">
+    <div className="p-3 flex flex-col items-center flex-1 md:w-32 glass-sm gap-1">
       <Icon size={16} className="text-accent" />
 
       <div className="text-center">
